@@ -1,0 +1,76 @@
+
+<!-- <div class="container_detail bg_green">
+    <div class="container_detail-child">                                                                       
+        <div class="container_detail-child-content">
+            <div class="container_detail-list">
+                <img class="container_detail-list-img" [src]="image?.url">
+                <div class="container_detail-list-quantity">
+                    <p>{{image?.likeCount}} Lượt thích</p>
+                    <p class="cmt">{{image?.commentCount}} Bình luận</p>
+                </div>
+                <hr>
+                <div class="container_detail-list-icon">
+                    <p><i class="far fa-heart"></i> Thích</p>                     
+                    <p>luợt xem : {{image?.viewsCount}}</p>
+                </div>
+            </div>
+
+            <div class="container_detail-list detail_list-text">
+                <p>Tên ảnh : {{image?.name}}</p>
+                <p class="description">Mô tả : {{image?.desciption}}.</p>
+                
+                
+            </div>
+
+            <div class="container_detail-list detail_list-text">
+                <p>Ngày tạo : {{image?.dateCreate | date}}</p>
+                <p>Trạng thái : {{image?.imageStatus ? "Công khai" : "Riêng tư"}}</p>
+                <p class="name">Tác giả : {{image?.userId}}</p>  
+            </div>
+        </div>
+
+        <div class="container_detail-child-cmt">
+            <p>Bình luận</p>
+            <input type="text" placeholder="Hãy nhập bình luận của bạn">
+                
+        </div>
+    </div>
+</div> -->
+
+
+
+<div class="container mb-4">
+    <div class="row">
+        <div class="col-md-8 m-auto">
+            <h3 class="mb-4 text-info">Chi tiết ảnh</h3>
+            <div class="card mb-3">
+                <img [src]="image?.url" class="card-img-top" alt="...">
+                <div class="d-flex justify-content-around mt-3">
+                    <p class="mx-3"><i (click)="changeLikeCount()" [style.color]="image.isLike ? 'red' : '#ccc'" class="fas fa-heart"></i>&nbsp;&nbsp;&nbsp;{{image?.likeCount}}</p>
+                    <!-- heart_has_like heart_not_like -->
+                    <p class="mx-3 detail_cmt"><i class="far fa-comment-alt"></i> Bình luận ({{image?.commentCount}})</p>
+                    <p class="mx-3 detail_view">Lượt xem : {{image?.viewsCount}}</p>                               
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{image?.name}}</h5>
+                    <p class="card-text">{{image?.desciption}}.</p>
+                    <p>Tác giả : {{image?.userName}}</p>
+                    <p>Trạng thái : {{image?.imageStatus ? "Công khai" : "Riêng tư"}}</p>
+                    <p class="card-text"><small class="text-muted detail_view">{{image?.dateCreate | date}}</small></p>
+                    <hr>
+                    <h4>Bình luận</h4>
+                    <div class="d-flex mt-3">
+                        <p class="mt-1 user_cmt">{{decodeUser?.userName}} <i class="far fa-user"></i></p>
+                        <input type="text" class="input_cmt" placeholder="Nhập bình luận của bạn..." aria-describedby="basic-addon1">
+                    </div>
+                </div>
+              </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+

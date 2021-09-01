@@ -1,0 +1,98 @@
+<!-- <div class="container_add">
+    <p class="container_add-title">Nhập thông tin ảnh của bạn</p>
+    <form [formGroup]="imageForm" (ngSubmit)="onSubmit()">
+        <label class="label_input" for="name">Tên ảnh :</label>
+        <input class="text mgbottom" type="text" id="name" name="name" formControlName="name" placeholder="Nhập tên ảnh" required maxlength="15">
+
+        <span *ngIf="imageForm.controls['name'].invalid &&(imageForm.controls['name'].dirty || imageForm.controls['name'].touched)" class="errorMessage">* Cần phải nhập tên.</span>       
+        
+        <label class="label_input" for="discription">Mô tả :</label>
+        <input class="text mgbottom" type="text" name="discription" formControlName="desciption" placeholder="Nhập mô tả ảnh" required>
+
+        <span *ngIf="imageForm.controls['desciption'].invalid && (imageForm.controls['desciption'].dirty || imageForm.controls['desciption'].touched)" class="errorMessage">* Cần phải nhập mô tả.</span>
+
+        <label class="label_input" for="url">Địa chỉ ảnh :</label>
+        <input class="text mgbottom" type="text" name="url" formControlName="url" placeholder="Nhập địa chỉ ảnh ( URL)" required>
+
+        <span *ngIf="imageForm.controls['url'].invalid && (imageForm.controls['url'].dirty || imageForm.controls['url'].touched)" class="errorMessage">* Cần phải có địa chỉ ảnh (url).</span>
+
+        <div class="container_add-choose">
+            <label for="files">Hãy chọn file ảnh &nbsp;&nbsp;&nbsp;</label>
+            <input type="file" id="files" name="files" multiple>
+        </div>
+        <div class="select_cate mgbottom">
+            <p>Chọn danh mục</p>
+            <select formControlName="categoryId" required>
+                <option value="{{cate.id}}" (change)="selectCate($event)" *ngFor = "let cate of cates">{{cate.name}}</option>                                              
+            </select>
+        </div>
+        <div class="select_status mgbottom">
+            <input (click)="publicStatus($event)" name="status" type="radio" formControlName="imageStatus" name="imageStatus" value=true/> Công khai
+            <input (click)="privateStatus($event)" name="status" type="radio" formControlName="imageStatus" name="imageStatus" value=false/> Riêng tư
+        </div>
+        <button type="submit" [disabled]="!imageForm.valid"><i class="fas fa-plus"></i> Thêm ảnh</button>
+    </form>
+</div> -->
+
+<!-- //////////////// -->
+ <section class="get-in-touch">
+    <h1 class="title add_title">Nhập thông tin ảnh</h1>
+    <form [formGroup]="imageForm" (ngSubmit)="onSubmit()" class="contact-form row text-center justify-content-center add_form">
+        <div class="col-md-8">
+            <label class="label_update" for="name">Tên ảnh</label>
+            <input formControlName="name" id="name" name="name" class="input-text js-input" type="text" required maxlength="30">
+            <span *ngIf="imageForm.controls['name'].invalid &&(imageForm.controls['name'].dirty || imageForm.controls['name'].touched)" class="errorMessage">* Cần phải nhập tên.</span>      
+        </div>
+        <div class="col-md-8">
+            <label class="label_update" for="discription">Mô tả</label>
+            <input formControlName="desciption" id="discription" class="input-text js-input" type="text" required>
+            <span *ngIf="imageForm.controls['desciption'].invalid && (imageForm.controls['desciption'].dirty || imageForm.controls['desciption'].touched)" class="errorMessage">* Cần phải nhập mô tả.</span>
+        </div>
+        <div class="col-md-8">
+            <label class="label_update" for="url">Địa chỉ ảnh (url)</label>
+            <input formControlName="url" id="url" class="input-text js-input" type="text" required>
+        </div>
+        <div class="col-md-8 my-5">
+            <select value="" formControlName="categoryId" required class="form-select select_cate" aria-label="Default select example">
+                <option value="">Chọn danh mục</option>
+                <option value="{{cate.id}}" (change)="selectCate($event)" *ngFor = "let cate of cates">{{cate.name}}</option>                                              
+            </select>
+         </div> 
+         <div class="col-md-8 d-flex">
+            <div class="form-check">
+                <input (click)="publicStatus($event)" class="form-check-input add_status_input" type="radio" formControlName="imageStatus" name="imageStatus" value=true id="flexRadioDefault1" checked>
+                <label class="form-check-label add_status_label" for="flexRadioDefault1">
+                  Công khai
+                </label>
+            </div>
+            <div class="form-check ms-4">
+                <input (click)="privateStatus($event)" type="radio" formControlName="imageStatus" name="imageStatus" value=false class="form-check-input add_status_input" id="flexRadioDefault2">
+                <label class="form-check-label add_status_label" for="flexRadioDefault2">
+                  Riêng tư
+                </label>
+            </div>               
+        </div>
+       <div class="form-field col-md-12">
+          <!-- <button [disabled]="!imageForm.valid" class="submit-btn" type="submit">Thêm ảnh</button> -->
+
+          <!-- Button trigger modal -->
+            <button [disabled]="!imageForm.valid" type="submit" class="btn btn-primary update_btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Thêm ảnh
+            </button>
+            
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                <div class="modal-content">                  
+                    <div class="modal-body">
+                    Chúc mừng, thêm thành công !
+                    </div>
+                    <div class="modal-footer">
+                    <button (click)="ok()" type="button" class="btn btn-success px-5 update_ok" data-bs-dismiss="modal">Ok</button>                
+                    </div>
+                </div>
+                </div>
+            </div>
+       </div>
+    </form>
+ </section>

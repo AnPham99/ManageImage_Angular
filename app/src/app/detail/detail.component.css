@@ -1,0 +1,13 @@
+.heart_has_like {
+    color: red;
+}
+
+.heart_not_like {
+    color: #ccc;
+}
+
+
+.fa-heart {
+    border-bottom: 1px solid pink;
+    font-size: 22px;
+}

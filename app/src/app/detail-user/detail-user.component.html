@@ -1,0 +1,55 @@
+<div class="container mb-4">
+    <div class="row">
+        <div class="col-md-8 m-auto">
+            <h3 class="mb-4 text-info">Chi tiết ảnh</h3>
+            <div class="d-flex justify-content-end mb-2">
+                <button (click)="goToUpdateImage()" class="btn btn-outline-info me-3">Chỉnh sửa ảnh</button>                      
+                <!-- <button (click)="deleteImg()" class="btn btn-outline-danger">Xóa ảnh</button> -->
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Xóa ảnh
+                </button>
+                
+                <!-- Modal -->
+                <div class="modal fade delete_noti" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title text-success" id="exampleModalLabel">Xóa</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                        Bạn chắc chắn muốn xóa ảnh này ?
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                        <button (click)="deleteImg()" type="button" class="btn btn-danger" data-bs-dismiss="modal">Xóa</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-3">
+                <img [src]="image?.url" class="card-img-top" alt="...">
+                <div class="d-flex justify-content-around mt-3">
+                    <p class="mx-3"><i class="fas fa-heart"></i>&nbsp;&nbsp;&nbsp;{{image?.likeCount}}</p>
+                    <p class="mx-3 detail_cmt"><i class="far fa-comment-alt"></i> Bình luận ({{image?.commentCount}})</p>
+                    <p class="mx-3 detail_view">Lượt xem : {{image?.viewsCount}}</p>                               
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{image?.name}}</h5>
+                    <p class="card-text">{{image?.desciption}}.</p>
+                    <p>Tác giả : {{image?.userName}}</p>
+                    <p>Trạng thái : {{image?.imageStatus ? "Công khai" : "Riêng tư"}}</p>
+                    <p class="card-text"><small class="text-muted detail_view">{{image?.dateCreate | date}}</small></p>
+                    <hr>
+                    <h4>Bình luận</h4>
+                    <div class="d-flex mt-3">
+                        <p class="mt-1 user_cmt">{{user?.userName}} <i class="far fa-user"></i></p>
+                        <input type="text" class="input_cmt" placeholder="Nhập bình luận của bạn..." aria-describedby="basic-addon1">
+                    </div>
+                </div>
+              </div>
+        </div>
+    </div>
+</div>

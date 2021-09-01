@@ -1,0 +1,11 @@
+
+<!-- <ul *ngFor="let cate of cates" class="container_category-list">
+    <li (click)="getImageCate(cate.id)">{{cate.name}}</li>
+    <li routerLink="/image-in-cate/{{cate.id}}">{{cate.name}}</li>
+
+</ul> -->
+
+
+<ul class="shadow list_cate">
+    <li *ngFor="let cate of cates" routerLink="/image-in-cate/{{cate.id}}">{{cate.name}}</li>
+</ul>
