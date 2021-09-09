@@ -3,6 +3,7 @@ import { HttpServerService } from '../services/http-server.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-detail',
@@ -10,11 +11,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./detail.component.css']
 })
 export class DetailComponent implements OnInit {
+  commentFormGr = new FormGroup({
+    content : new FormControl('')
+  });
+
   imageId! : number;
   image : any;
-  decodeUser : any;
+  user : any;
   isLike : any;
+  comments : any;
   
+  hasLike = {color : 'red'}
+  noLike = {color : '#ccc'}
+
   constructor(private serverHttp : HttpServerService,
               private route: ActivatedRoute,
               private router : Router,
@@ -24,13 +33,16 @@ export class DetailComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.decodeUser = this.authService.getUserDecode();
+    this.user = this.authService.getUserDecode();
 
     this.GetImageIdParams();
     
     this.GetImageById();
 
-    // setTimeout(() => { this.ngOnInit() }, 0.1);
+    this.getIsLike();
+    
+    this.getComment();
+    
   }
 
   GetImageIdParams(){
@@ -43,28 +55,40 @@ export class DetailComponent implements OnInit {
     if(this.imageId > 0) {
       this.serverHttp.getImageById(this.imageId).subscribe((data) => {
         this.image = data;
-        console.log(this.image);
+        // console.log(this.image);
+        // console.log(this.user);
       });
     }
   }
 
-  changeLikeCount(){
-    // if(this.image.isLike === false)
-    // {
-    //   this.image.likeCount +=1;
-    //   this.image.isLike = true;
-    // }
-    // else
-    // {
-    //   this.image.likeCount -=1;
-    //   this.image.isLike = false;
-    // }
-    this.serverHttp.isLikeImage(this.imageId, this.image).subscribe((data) => {
+  getIsLike(){
+    this.serverHttp.getLike(this.user.userId, this.imageId).subscribe(data => {
+      this.isLike = data;
+      console.log(this.isLike);
+    })
+  }
+
+  like() {
+    this.serverHttp.LikeByUser(this.user.userId, this.image.id, this.image).subscribe(data => {
       this.GetImageById();
+      this.getIsLike();
     })
     
-    
+  }
+
+  getComment() {
+    this.serverHttp.getComment(this.imageId).subscribe(data => {
+      this.comments = data;
+    })
+  }
+
+  sendComment() {
+    this.serverHttp.postComment(this.user.userId, this.imageId, this.commentFormGr.value).subscribe(data => {
+      this.serverHttp.IncreaseComment(this.imageId,this.image).subscribe(data => {})
+      this.getComment();
+      this.GetImageById();
+      this.commentFormGr.reset();
+    })
   }
      
-  
 }

@@ -11,13 +11,14 @@ import { CommonService } from '../services/common.service';
 })
 export class RegisterComponent implements OnInit {
 
+  role ="Admin";
   registerForm = new FormGroup({
     firstName: new FormControl(''),
     lastName: new FormControl(''),
     email : new FormControl(''),
     userName: new FormControl(''),
     passWord: new FormControl(''),
-    roles : new FormControl(['User'])
+    roles : new FormControl([this.role])
   });
   
   constructor(private router: Router,private authService: AuthService) { }

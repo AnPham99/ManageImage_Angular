@@ -9,27 +9,33 @@ import { HttpServerService } from '../services/http-server.service';
 export class HotImageComponent implements OnInit {
 
   images : any;
-  image : any;
-  max = 0;
-  img : any;
+  topLike : any;
+  topCmt : any;
+  topView : any;
+
   constructor(private httpSever : HttpServerService) { }
 
   ngOnInit(): void {
-    this.images = this.httpSever.getAllImages();
-    // this.getTopLike();
+    this.getTopLike();
+    this.getTopCmt();
+    this.getTopView();
   }
 
-  // 
-  // findTopLike(){
-  //   for(this.image of this.images)
-  //   {
-  //     if(this.image.likeCount > this.max)
-  //       return this.image;
-  //   }
-  // }
+  getTopLike(){
+    this.httpSever.getTopLike().subscribe( data => {
+      this.topLike = data;
+    })
+  }
 
-  // getTopLike(){
-  //   this.img = this.findTopLike();
-  // }
+  getTopCmt(){
+    this.httpSever.getTopCmt().subscribe( data => {
+      this.topCmt = data;
+    })
+  }
 
+  getTopView(){
+    this.httpSever.getTopView().subscribe( data => {
+      this.topView = data;
+    })
+  }
 }

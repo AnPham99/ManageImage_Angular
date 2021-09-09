@@ -91,6 +91,40 @@ export class HttpServerService {
       .pipe(catchError(this.handleError));
   }
 
+  public getTopLike() {
+    const url = `${this.REST_API_SERVER}/api/images/toplike`;
+    return this.http
+      .get<any>(url, httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  public getTopCmt() {
+    const url = `${this.REST_API_SERVER}/api/images/topcmt`;
+    return this.http
+      .get<any>(url, httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  public getTopView() {
+    const url = `${this.REST_API_SERVER}/api/images/topview`;
+    return this.http
+      .get<any>(url, httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  getLike(userId : string, imageId : number) {
+    const url = `${this.REST_API_SERVER}/api/like/`+ userId + '/' + imageId;
+    return this.http
+      .get<any>(url, httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  getComment(imageId : number) {
+    const url = `${this.REST_API_SERVER}/api/comment/`+ imageId;
+    return this.http
+      .get<any>(url, httpOptions)
+      .pipe(catchError(this.handleError));
+  }  
 
   // http Post
 
@@ -101,12 +135,21 @@ export class HttpServerService {
       .pipe(catchError(this.handleError));  
   }
 
+  postComment(userId: string, imageId : number, content : any) {
+    const url = `${this.REST_API_SERVER}/api/comment/`+userId + '/' + imageId;
+    return this.http
+      .post<any>(url, content, httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
   //http Put
-  public isLikeImage(imageId : number, data : any) {
-    const url = `${this.REST_API_SERVER}/api/images/id/`+imageId;
+  
+  public LikeByUser(userId: string, imageId: number, data : any)
+  {
+    const url = `${this.REST_API_SERVER}/api/images/likebyuser/`+userId+'/'+imageId;
     return this.http
       .put<any>(url, data, httpOptions)
-      .pipe(catchError(this.handleError));  
+      .pipe(catchError(this.handleError));
   }
 
   public updateImageByUser(userId : string, imageId : number, data : Image) {
@@ -130,6 +173,19 @@ export class HttpServerService {
       .pipe(catchError(this.handleError));  
   }
 
+  public IncreaseView(imageId : number, data : any) {
+    const url = `${this.REST_API_SERVER}/api/images/increaseview/`+imageId;
+    return this.http
+      .put<any>(url, data, httpOptions)
+      .pipe(catchError(this.handleError));  
+  }
+
+  public IncreaseComment(imageId : number, data : any) {
+    const url = `${this.REST_API_SERVER}/api/images/addcomment/`+imageId;
+    return this.http
+      .put<any>(url, data, httpOptions)
+      .pipe(catchError(this.handleError));  
+  }
   //http Delete
 
   public deleteImage(userId : string, imageId : number) {

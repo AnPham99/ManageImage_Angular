@@ -34,6 +34,7 @@ export class ManageImageComponent implements OnInit {
 
   getUserByToken(){
     this.user = this.authService.getUserDecode();
+    console.log(this.user);
   }
 
   getImageByUser(){

@@ -4,12 +4,11 @@
         <div class="col-md-3">
             <div class="card bg_list-item">
                 <p class="hot_title">Ảnh được nhiều yêu thích</p>
-                <img src="../../assets/Img/bikini.jpeg" class="card-img-top list_img_content_hot rounded-circle" alt="">
+                <img src="{{topLike?.url}}" class="card-img-top list_img_content_hot rounded-circle" alt="">
                 <div class="card-body text-center">
-                    <h5 class="card-title">Card title</h5>
-                    <!-- <p class="card-text list_text_content">Mô tả : Some quick example text to build on the card title and.</p> -->
+                    <h5 class="card-title">{{topLike?.name}}</h5>
                     <div class="d-grid gap-2 col mx-auto">
-                        <button class="btn btn-outline-info" type="button">Xem chi tiết</button>
+                        <button [routerLink]="['/image-detail', topLike?.id]" class="btn btn-outline-info" type="button">Xem chi tiết</button>
                     </div>                        
                 </div>
             </div>
@@ -17,12 +16,11 @@
         <div class="col-md-3">
             <div class="card bg_list-item">
                 <p class="hot_title">Ảnh có nhiều bình luận</p>
-                <img src="../../assets/Img/bikini.jpeg" class="card-img-top list_img_content_hot rounded-circle" width="168" alt="">
+                <img [routerLink]="['/image-detail', topCmt?.id]" src="{{topCmt?.url}}" class="card-img-top list_img_content_hot rounded-circle" width="168" alt="">
                 <div class="card-body text-center">
-                    <h5 class="card-title">Card title</h5>
-                    <!-- <p class="card-text list_text_content">Mô tả : Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+                    <h5 class="card-title">{{topCmt?.name}}</h5>
                     <div class="d-grid gap-2 col mx-auto">
-                        <button class="btn btn-outline-info" type="button">Xem chi tiết</button>
+                        <button [routerLink]="['/image-detail', topCmt?.id]" class="btn btn-outline-info" type="button">Xem chi tiết</button>
                     </div>                        
                 </div>
             </div>
@@ -30,12 +28,11 @@
         <div class="col-md-3">
             <div class="card bg_list-item">
                 <p class="hot_title">Ảnh có nhiều lượt xem</p>
-                <img src="../../assets/Img/bikini.jpeg" class="card-img-top list_img_content_hot rounded-circle" width="168" alt="">
+                <img [routerLink]="['/image-detail', topView?.id]" src="{{topView?.url}}" class="card-img-top list_img_content_hot rounded-circle" width="168" alt="">
                 <div class="card-body text-center">
-                    <h5 class="card-title">Card title</h5>
-                    <!-- <p class="card-text list_text_content">Mô tả : Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+                    <h5 class="card-title">{{topView?.name}}</h5>
                     <div class="d-grid gap-2 col mx-auto">
-                        <button class="btn btn-outline-info" type="button">Xem chi tiết</button>
+                        <button [routerLink]="['/image-detail', topView?.id]" class="btn btn-outline-info" type="button">Xem chi tiết</button>
                     </div>                        
                 </div>
             </div>

@@ -42,7 +42,7 @@ const routes: Routes = [
     { path: 'add-image/:userId', component: AddImageComponent, canActivate: [AuthGuard]},
     { path: 'manage-image/:userId', component: ManageImageComponent, canActivate: [AuthGuard]},
     { path: 'image-detail-by-user/:userId/:imageId', component: DetailUserComponent, canActivate: [AuthGuard]},
-    { path: 'admin', component: AdminComponent, canActivate: [ApprovalGuard], data: {expectedRole: 'Admin'}},
+    { path: 'admin', component: AdminComponent, canActivate: [ApprovalGuard,AuthGuard], data: {expectedRole: 'Admin'}},
   ]}
 
   // { path: 'login', component: LoginComponent},

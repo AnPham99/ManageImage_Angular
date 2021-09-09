@@ -28,31 +28,22 @@ export class AdminComponent implements OnInit {
     })
   }
 
-
   denyRequest(imageId : number){
     this.severHttp.getImageById(imageId).subscribe(data => {
-      // data.isDeny = true;
       this.severHttp.denyByAdminImage(imageId, data).subscribe(data =>{
         this.getImageNotApproval();
-
       })
-      // this.reloadPage();
     })
   }
-
-  
-  
+ 
   approval(imageId : number){
     this.severHttp.getImageById(imageId).subscribe(data => {   
       // data.isApproval = true;
       this.severHttp.approvalImageByAdmin(imageId, data).subscribe(data => {
         this.getImageNotApproval();
       });
-      // this.reloadPage();
     })
   }
 
-  reloadPage(): void {
-    window.location.reload();
-  }
+  
 }

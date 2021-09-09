@@ -8,19 +8,25 @@ import { HttpServerService } from '../services/http-server.service';
   styleUrls: ['./all-images.component.css']
 })
 export class AllImagesComponent implements OnInit {
-  a = false;
+ 
   images : any;
 
   constructor(private serverHttp : HttpServerService, private route : ActivatedRoute, private router : Router) { } 
 
   ngOnInit(): void {
+    this.getImageHasApproval();
+  }
+
+  getImageById(imageId : number, data : any) {
+    this.serverHttp.IncreaseView(imageId, data).subscribe(data =>{});
+    this.router.navigate(["/image-detail", imageId]);
+  }
+
+  getImageHasApproval(){
     this.serverHttp.getImageHasApproval().subscribe((data) => {
-        this.images = data;
-        console.log(this.images);
-      });
-    }
-  getImageById(Id : number) {
-    this.router.navigate(["/image-detail", Id]);
+      this.images = data;
+      console.log(this.images);
+    });
   }
 
 }
