@@ -8,7 +8,7 @@ import { HttpServerService } from '../services/http-server.service';
   styleUrls: ['./image-in-cate.component.css']
 })
 export class ImageInCateComponent implements OnInit {
-
+  
   cateId! : number;
   userId! : string;
   images : any;
@@ -28,11 +28,18 @@ export class ImageInCateComponent implements OnInit {
       console.log(this.cate);
     })
 
-    console.log(this.cateId);
+    this.getImageInCategory();
+  }
+  
+  getImageInCategory() {
     this.serverHttp.getImageInCate(this.cateId).subscribe(data => {
       this.images = data;
+    },
+    error => {
+      console.log(error);
     })
   }
+
 
   getImageById(imageId : number) {
     this.router.navigate(["/image-detail", imageId]);

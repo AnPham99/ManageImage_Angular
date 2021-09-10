@@ -10,7 +10,6 @@ import { AppComponent } from './app.component';
 
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
-// import { ContainerComponent } from './container/container.component';
 import { FooterComponent } from './footer/footer.component';
 import { DetailComponent } from './detail/detail.component';
 import { AllImagesComponent } from './all-images/all-images.component';
@@ -25,7 +24,8 @@ import { RegisterComponent } from './register/register.component';
 import { AuthInterceptor } from './share/authconfig.interceptor';
 import { DetailUserComponent } from './detail-user/detail-user.component';
 import { AdminComponent } from './admin/admin.component';
-
+import { NgxPaginationModule } from 'ngx-pagination';
+import { SearchComponent } from './search/search.component';
 
 
 
@@ -34,7 +34,6 @@ import { AdminComponent } from './admin/admin.component';
     AppComponent,
     HomeComponent,
     HeaderComponent,
-    // ContainerComponent,
     FooterComponent,
     DetailComponent,
     AllImagesComponent,
@@ -48,6 +47,7 @@ import { AdminComponent } from './admin/admin.component';
     RegisterComponent,
     DetailUserComponent,
     AdminComponent,
+    SearchComponent,
     
 
  
@@ -57,7 +57,8 @@ import { AdminComponent } from './admin/admin.component';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    NgxPaginationModule
   ],
   providers: [
     {

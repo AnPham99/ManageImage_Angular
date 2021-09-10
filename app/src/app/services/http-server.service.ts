@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import {Image} from '../models/image';
@@ -37,9 +37,30 @@ export class HttpServerService {
       .pipe(catchError(this.handleError));
   }
   
-
-  public getAllImages() {
+  public getAllImages() {    
     const url = `${this.REST_API_SERVER}/api/images`;
+    return this.http
+      .get<any>(url, httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  public searchImage(searchTerm : any) {
+    const url = `${this.REST_API_SERVER}/api/images/hasapproval?searchTerm=${searchTerm}`;
+    return this.http
+      .get<any>(url, httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+  // approval
+
+  public getImageHasApproval2(pageNumber : any , pageSize : any) {
+    const url = `${this.REST_API_SERVER}/api/images/hasapproval?pageNumber=${pageNumber}&pageSize=${pageSize}`;
+    return this.http
+      .get<any>(url, httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  public getImageHasApproval() {
+    const url = `${this.REST_API_SERVER}/api/images/hasapproval`;
     return this.http
       .get<any>(url, httpOptions)
       .pipe(catchError(this.handleError));
@@ -52,7 +73,7 @@ export class HttpServerService {
       .pipe(catchError(this.handleError));
   }
 
-  public getImageInCate(cateId: number) {
+  public getImageInCate(cateId: number) : Observable<any> {
     const url = `${this.REST_API_SERVER}/api/images/category/`+cateId;
     return this.http
       .get<any>(url, httpOptions)
@@ -70,15 +91,6 @@ export class HttpServerService {
 
   public GetImageByIdForUser(userId: string, imageId : number) {
     const url = `${this.REST_API_SERVER}/api/images/`+userId+'/'+imageId;
-    return this.http
-      .get<any>(url, httpOptions)
-      .pipe(catchError(this.handleError));
-  }
-
-  // approval
-
-  public getImageHasApproval() {
-    const url = `${this.REST_API_SERVER}/api/images/hasapproval`;
     return this.http
       .get<any>(url, httpOptions)
       .pipe(catchError(this.handleError));

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { HttpServerService } from '../services/http-server.service';
@@ -9,11 +10,19 @@ import { HttpServerService } from '../services/http-server.service';
   styleUrls: ['./detail-user.component.css']
 })
 export class DetailUserComponent implements OnInit {
+  
+  commentFormGr = new FormGroup({
+    content : new FormControl('')
+  });
 
   imageId! : number;
   image : any;
   user : any;
+  isLike : any;
+  comments : any;
   
+  hasLike = {color : 'red'}
+  noLike = {color : '#ccc'}
   constructor(private serverHttp : HttpServerService,
               private route: ActivatedRoute,
               private router : Router,
@@ -25,10 +34,12 @@ export class DetailUserComponent implements OnInit {
     this.user = this.authService.getUserDecode();
 
     this.GetImageIdParams();
-    
+        
     this.GetImageById();
 
-    // this.delete();
+    this.getIsLike();
+    
+    this.getComment();
   }
 
   GetImageIdParams(){
@@ -41,9 +52,40 @@ export class DetailUserComponent implements OnInit {
     if(this.imageId > 0) {
       this.serverHttp.getImageById(this.imageId).subscribe((data) => {
         this.image = data;
-        console.log(this.image);
+        // console.log(this.image);
+        // console.log(this.user);
       });
     }
+  }
+
+  getIsLike(){
+    this.serverHttp.getLike(this.user.userId, this.imageId).subscribe(data => {
+      this.isLike = data;
+      console.log(this.isLike);
+    })
+  }
+
+  like() {
+    this.serverHttp.LikeByUser(this.user.userId, this.image.id, this.image).subscribe(data => {
+      this.GetImageById();
+      this.getIsLike();
+    })
+    
+  }
+
+  getComment() {
+    this.serverHttp.getComment(this.imageId).subscribe(data => {
+      this.comments = data;
+    })
+  }
+
+  sendComment() {
+    this.serverHttp.postComment(this.user.userId, this.imageId, this.commentFormGr.value).subscribe(data => {
+      this.serverHttp.IncreaseComment(this.imageId,this.image).subscribe(data => {})
+      this.getComment();
+      this.GetImageById();
+      this.commentFormGr.reset();
+    })
   }
 
   goToUpdateImage(){
@@ -62,60 +104,3 @@ export class DetailUserComponent implements OnInit {
     window.location.reload();
   }
 }
-
-
-// images : any;
-//   userId : any;
-//   user : any;
-//   notImage! : boolean;
-//   constructor(private httpServer : HttpServerService,
-//               private route : ActivatedRoute,
-//               private router : Router,
-//               private authService : AuthService)
-//   {}
-
-//   ngOnInit(): void {   
-//     this.route.params.subscribe(params => {
-//       this.userId = params['userId'];
-
-//     this.getImageByUser();
-
-//     this.getUserByToken();
-//     });
-
-//     // this.logOut();
-//   }
-
-//   getUserByToken(){
-//     this.user = this.authService.getUserDecode();
-//   }
-
-//   getImageByUser(){
-//     this.httpServer.GetAllImageByUser(this.userId).subscribe(data =>{
-//       this.images = data;    
-//     })
-//   }
-//   getImageDetailByUser(userId : string, imageId : number){
-//     this.router.navigate(["/image-detail-by-user/", userId, imageId]);
-//   }
-
-//   goToUpdateImage(userId : any, imageId : number){
-//     this.router.navigate(["/update-image",userId,imageId]);
-//   }
-
-//   deleteImage(userId : string, imageId : number){
-//     this.httpServer.daleteImage(userId, imageId).subscribe(data => {
-//       // this.router.navigate(["/"]);
-//       this.reloadPage();
-
-//     })
-//   }
-
-//   // logOut(): void {
-//   //   this.authService.signOut();
-//   //   this.router.navigate(['/login']);
-//   // }
-
-//   reloadPage(): void {
-//     window.location.reload();
-//   }

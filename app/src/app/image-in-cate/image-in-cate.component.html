@@ -23,7 +23,7 @@
 
 <div class="container mt-5 mb-5">
     <div class="row">
-        <h3>{{cate.name}} <i class="fas fa-border-all"></i></h3>
+        <h3>{{cate?.name}} <i class="fas fa-border-all"></i></h3>
         <div *ngFor="let image of images" class="col-xl-3 col-md-4 col-sm-6 mt-4">
             <div class="card">
                 <img (click)="getImageById(image.id)" src="{{image.url}}" class="card-img-top list_img_content" alt="">
@@ -33,6 +33,6 @@
                     <a (click)="getImageById(image.id)" class="btn btn-outline-success mx-auto">Xem chi tiết</a>
                 </div>
             </div>
-        </div>      
+        </div>    
     </div>
 </div>

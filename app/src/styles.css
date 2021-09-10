@@ -367,6 +367,14 @@ footer {
     .btn_approval {
         margin-bottom: 4px;
     }
+
+    .list_item_hot_repo {
+        margin-top: 25px;
+    }
+
+    .btn_hot_repo {
+        width: 250 !important;
+    }
 }
 
 @media screen and (max-width: 768px) {
@@ -409,6 +417,14 @@ footer {
     .btn_approval {
         margin-bottom: 4px;
     }
+
+    .list_item_hot_repo {
+        margin-top: 25px;
+    }
+
+    .btn_hot_repo {
+        width: 250 !important;
+    }
 }
 
 @media screen and (max-width: 992px) {
@@ -442,5 +458,12 @@ footer {
         width: 168px !important;
         height: 168px !important;
         margin: auto !important;
+    }
+    .card_title_name {
+        height: 50px !important;
+    }
+
+    .btn_hot_repo {
+        width: 250 !important;
     }
 }

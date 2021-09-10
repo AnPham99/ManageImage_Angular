@@ -3,10 +3,10 @@
         <div class="col-md-8 m-auto">
             <h3 class="mb-4 text-info">Chi tiết ảnh</h3>
             <div class="d-flex justify-content-end mb-2">
-                <button (click)="goToUpdateImage()" class="btn btn-outline-info me-3">Chỉnh sửa ảnh</button>                      
+                <button (click)="goToUpdateImage()" class="btn btn-outline-success me-3">Chỉnh sửa ảnh</button>                      
                 <!-- <button (click)="deleteImg()" class="btn btn-outline-danger">Xóa ảnh</button> -->
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Xóa ảnh
                 </button>
                 
@@ -32,24 +32,31 @@
             <div class="card mb-3">
                 <img [src]="image?.url" class="card-img-top" alt="...">
                 <div class="d-flex justify-content-around mt-3">
-                    <p class="mx-3"><i class="fas fa-heart"></i>&nbsp;&nbsp;&nbsp;{{image?.likeCount}}</p>
-                    <p class="mx-3 detail_cmt"><i class="far fa-comment-alt"></i> Bình luận ({{image?.commentCount}})</p>
+                    <p class="mx-3"><i (click)="like()" [style.color]="isLike ? 'red' : '#ccc'" class="fas fa-heart heart_has_like"></i>&nbsp;&nbsp;&nbsp;{{image?.likeCount}}</p>
+                    <p href=#cmt class="mx-3 detail_cmt"><i class="far fa-comment-alt"></i> Bình luận ({{image?.commentCount}})</p>
                     <p class="mx-3 detail_view">Lượt xem : {{image?.viewsCount}}</p>                               
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title">{{image?.name}}</h5>
+                    <h4 class="card-title">{{image?.name}}</h4>
                     <p class="card-text">{{image?.desciption}}.</p>
                     <p>Tác giả : {{image?.userName}}</p>
                     <p>Trạng thái : {{image?.imageStatus ? "Công khai" : "Riêng tư"}}</p>
                     <p class="card-text"><small class="text-muted detail_view">{{image?.dateCreate | date}}</small></p>
                     <hr>
-                    <h4>Bình luận</h4>
-                    <div class="d-flex mt-3">
-                        <p class="mt-1 user_cmt">{{user?.userName}} <i class="far fa-user"></i></p>
-                        <input type="text" class="input_cmt" placeholder="Nhập bình luận của bạn..." aria-describedby="basic-addon1">
+                    <h4>Bình luận của mọi người</h4>                              
+                    <div *ngFor="let comment of comments" class="mt-4">
+                        <div class="mt-4">
+                            <p class="user_cmt text-primary">{{comment.userName}} <i class="far fa-user"></i></p>
+                            <p class="bg_cmt py-2 px-4 rounded-pill">{{comment.content}}</p>
+                        </div>
                     </div>
+                    <form class="d-flex mt-5" [formGroup]="commentFormGr" (ngSubmit)="sendComment()">
+                        <p class="mt-2 user_cmt">{{user?.userName}} <i class="far fa-user"></i></p>
+                        <input id="cmt" formControlName="content" type="text" class="input_cmt" placeholder="Nhập bình luận của bạn" aria-describedby="basic-addon1">
+                        <button [disabled]="!commentFormGr.valid" type="submit" class="submit_cmt">Gửi</button>
+                    </form>
                 </div>
-              </div>
+            </div>
         </div>
     </div>
 </div>

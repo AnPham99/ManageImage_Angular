@@ -19,8 +19,4 @@ export class CategoryComponent implements OnInit {
         console.log(this.cates);
       });
   }
-
-  // getImageCate(Id : number) {
-  //   this.router.navigate(["image-in-cate", Id]);
-  // }
 }

@@ -12,8 +12,11 @@ export class HeaderComponent implements OnInit {
 
   cates : any;
   user : any;
-
-  constructor(private authService: AuthService, private router : Router, private serverHttp : HttpServerService) { }
+  searchTerm! : string;
+  constructor(private authService: AuthService, private router : Router, private serverHttp : HttpServerService) 
+  { 
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+  }
 
   ngOnInit(): void {
     this.user = this.authService.getUserDecode();
@@ -25,6 +28,10 @@ export class HeaderComponent implements OnInit {
 
   getProfile(){
     this.router.navigate(['/manage-image', this.user.userId]);
+  }
+
+  search() {
+    this.router.navigate(['/search'], { queryParams: { searchTerm : this.searchTerm}});
   }
   
 }

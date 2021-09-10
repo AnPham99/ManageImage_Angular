@@ -48,10 +48,10 @@
                     </li>
                 </ul>
                 
-                <form class="d-flex">
-                    <input class="form-control me-2 btn_search" type="search" placeholder="Tìm kiếm ảnh" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>                 
+                <div class="d-flex">
+                    <input [(ngModel)]="searchTerm" name="search" class="form-control me-2 btn_search" type="text" placeholder="Tìm kiếm ảnh" aria-label="Search">
+                    <button (click)="search()" class="btn btn-outline-success">Search</button>
+                </div>                 
             </div>       
         </div>
       </nav>
