@@ -54,7 +54,7 @@
                     {{user.userName}} <i class="far fa-user"></i>
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                  <li><button class="dropdown-item" type="button">Thông tin cá nhân</button></li>
+                  <li><button class="dropdown-item" type="button" [routerLink]="['/userinfo']">Thông tin cá nhân</button></li>
                   <li><button (click)="logOut()" class="dropdown-item" type="button">Đăng xuất</button></li>  
                   <!-- (click)="logOut()"           -->
                 </ul>

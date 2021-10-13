@@ -2,3 +2,8 @@
     margin-bottom: 10px;
     font-size: 1.6rem;
 }
+
+.errorMessage {
+    margin-top: 20px !important;
+    text-align: left !important;
+}

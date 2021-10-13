@@ -15,6 +15,7 @@ export class UpdateImageComponent implements OnInit {
   cates : any;
   cate = "";
   status : any;
+  image : any;
   
   imageForm = new FormGroup({
     name: new FormControl(''),
@@ -47,13 +48,20 @@ export class UpdateImageComponent implements OnInit {
   }
 
   private loadData() : any {
+    
     this.serverHttp.GetImageByIdForUser(this.userId, this.imageId).subscribe(data => {
-      console.log('image:', data);
-      for (const controlName in this.imageForm.controls) {
-        if (controlName) {
-          this.imageForm.controls[controlName].setValue(data[controlName]);
-        }
-      }
+      this.image = data;
+      // for (const controlName in this.imageForm.controls) {
+      //   if (controlName) {
+      //     this.imageForm.controls[controlName].setValue(data[controlName]);
+      //   }
+      // }
+      this.imageForm.controls['name'].setValue(data.name);
+      this.imageForm.controls['url'].setValue(data.url);
+      this.imageForm.controls['imageStatus'].setValue(data.imageStatus);
+      this.status = this.imageForm.controls['imageStatus'].setValue(data.imageStatus);
+      this.imageForm.controls['desciption'].setValue(data.desciption);
+      this.imageForm.controls['categoryId'].setValue(data.categoryId);
     });
   }
 
@@ -75,12 +83,8 @@ export class UpdateImageComponent implements OnInit {
   }
 
 
-  publicStatus(event:any){
-    this.status = event.target.value;
+  changeStatus(event:any){
+    this.imageForm.controls['imageStatus'].setValue(event.target.value);
+    console.log(event.target.value);
   }
-
-  privateStatus(event:any){
-    this.status = event.target.value;
-  }
-
 }

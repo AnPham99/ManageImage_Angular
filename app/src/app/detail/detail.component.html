@@ -1,50 +1,11 @@
 
-<!-- <div class="container_detail bg_green">
-    <div class="container_detail-child">                                                                       
-        <div class="container_detail-child-content">
-            <div class="container_detail-list">
-                <img class="container_detail-list-img" [src]="image?.url">
-                <div class="container_detail-list-quantity">
-                    <p>{{image?.likeCount}} Lượt thích</p>
-                    <p class="cmt">{{image?.commentCount}} Bình luận</p>
-                </div>
-                <hr>
-                <div class="container_detail-list-icon">
-                    <p><i class="far fa-heart"></i> Thích</p>                     
-                    <p>luợt xem : {{image?.viewsCount}}</p>
-                </div>
-            </div>
-
-            <div class="container_detail-list detail_list-text">
-                <p>Tên ảnh : {{image?.name}}</p>
-                <p class="description">Mô tả : {{image?.desciption}}.</p>
-                
-                
-            </div>
-
-            <div class="container_detail-list detail_list-text">
-                <p>Ngày tạo : {{image?.dateCreate | date}}</p>
-                <p>Trạng thái : {{image?.imageStatus ? "Công khai" : "Riêng tư"}}</p>
-                <p class="name">Tác giả : {{image?.userId}}</p>  
-            </div>
-        </div>
-
-        <div class="container_detail-child-cmt">
-            <p>Bình luận</p>
-            <input type="text" placeholder="Hãy nhập bình luận của bạn">
-                
-        </div>
-    </div>
-</div> -->
-
-
 
 <div class="container mb-4">
     <div class="row">
         <div class="col-md-8 m-auto">
             <h3 class="mb-4 text-info">Chi tiết ảnh</h3>
             <div class="card mb-3">
-                <img [src]="image?.url" class="card-img-top" alt="...">
+                <img [src]="image?.url" class="card-img-top img_detail_height" alt="...">
                 <div class="d-flex justify-content-around mt-3">
                     <p class="mx-3"><i (click)="like()" [style.color]="isLike ? 'red' : '#ccc'" class="fas fa-heart heart_has_like"></i>&nbsp;&nbsp;&nbsp;{{image?.likeCount}}</p>
                     <p href=#cmt class="mx-3 detail_cmt"><i class="far fa-comment-alt"></i> Bình luận ({{image?.commentCount}})</p>
@@ -59,9 +20,9 @@
                     <hr>
                     <h4>Bình luận của mọi người</h4>                              
                     <div *ngFor="let comment of comments" class="mt-4">
-                        <div class="mt-4">
-                            <p class="user_cmt text-primary">{{comment.userName}} <i class="far fa-user"></i></p>
-                            <p class="bg_cmt py-2 px-4 rounded-pill">{{comment.content}}</p>
+                        <div class="mt-4 py-2 bg_cmt">
+                            <p class="user_cmt px-4 text-primary cmt_item">{{comment.userName}} <i class="far fa-user"></i></p>
+                            <p class="py-2 px-4 rounded-pill cmt_item">{{comment.content}}</p>
                         </div>
                     </div>
                     <form class="d-flex mt-5" [formGroup]="commentFormGr" (ngSubmit)="sendComment()">

@@ -14,20 +14,12 @@ export class AuthGuard implements CanActivate {
   ) { }
  
   canActivate(route: ActivatedRouteSnapshot): boolean {
-    // const expectedRole = route.data.expectedRole;
-    // const user = this.authService.getUserDecode();
     const token = this.authService.getToken();
     if (token === null) {
       window.alert("Đăng nhập để được truy cập vào trang này!");
       this.router.navigate(['login']);
       return false;
     }
-    // if(user.roles !== expectedRole)
-    // {
-    //   alert("Không có quyền truy cập vào trang này");
-    //     this.router.navigate(['login']);
-    //     return false;
-    // }
     return true;
   }
   

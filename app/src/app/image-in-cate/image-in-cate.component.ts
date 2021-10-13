@@ -13,7 +13,7 @@ export class ImageInCateComponent implements OnInit {
   userId! : string;
   images : any;
   cate : any;
-
+  newImage : any;
   constructor(private serverHttp : HttpServerService, private route : ActivatedRoute, private router : Router) { 
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
@@ -29,6 +29,8 @@ export class ImageInCateComponent implements OnInit {
     })
 
     this.getImageInCategory();
+
+    this.getNewImageInCate();
   }
   
   getImageInCategory() {
@@ -40,6 +42,11 @@ export class ImageInCateComponent implements OnInit {
     })
   }
 
+  getNewImageInCate() {
+    this.serverHttp.getNewImageInCate(this.cateId).subscribe(data => {
+      this.newImage = data;
+    })
+  }
 
   getImageById(imageId : number) {
     this.router.navigate(["/image-detail", imageId]);

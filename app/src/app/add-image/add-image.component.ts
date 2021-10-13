@@ -17,7 +17,7 @@ export class AddImageComponent implements OnInit {
   imageForm = new FormGroup({
     name: new FormControl(''),
     url: new FormControl(''),
-    imageStatus : new FormControl(''),
+    imageStatus : new FormControl('true'),
     desciption: new FormControl(''),
     categoryId: new FormControl(''),
   });

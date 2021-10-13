@@ -63,7 +63,7 @@ export class DetailComponent implements OnInit {
 
   getIsLike(){
     this.serverHttp.getLike(this.user.userId, this.imageId).subscribe(data => {
-      this.isLike = data;
+      this.isLike = data.isLike;
       console.log(this.isLike);
     })
   }

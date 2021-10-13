@@ -23,6 +23,12 @@
                 <label for="floatingInputEmail">Địa chỉ email</label>
                 <span *ngIf="registerForm.controls['email'].invalid &&(registerForm.controls['email'].dirty || registerForm.controls['email'].touched)" class="errorMessage">* Bạn chưa nhập email.</span>       
               </div>
+
+              <div class="form-floating mb-3">
+                <input type="email" formControlName="phoneNumber" class="form-control" id="floatingInputEmail" placeholder="Số điện thoại của bạn" required>
+                <label for="floatingInputEmail">Số điện thoại</label>
+                <span *ngIf="registerForm.controls['phoneNumber'].invalid &&(registerForm.controls['phoneNumber'].dirty || registerForm.controls['phoneNumber'].touched)" class="errorMessage">* Bạn chưa số điên thoại.</span>       
+              </div>
               
               <div class="form-floating mb-3">
                 <input type="text" formControlName="userName" class="form-control" id="floatingInputUsername" placeholder="Tên tài khoản" required autofocus>

@@ -26,6 +26,7 @@ import { DetailUserComponent } from './detail-user/detail-user.component';
 import { AdminComponent } from './admin/admin.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { SearchComponent } from './search/search.component';
+import { UserinfoComponent } from './userinfo/userinfo.component';
 
 
 
@@ -48,6 +49,7 @@ import { SearchComponent } from './search/search.component';
     DetailUserComponent,
     AdminComponent,
     SearchComponent,
+    UserinfoComponent,
     
 
  

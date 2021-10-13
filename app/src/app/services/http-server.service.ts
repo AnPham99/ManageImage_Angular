@@ -138,6 +138,20 @@ export class HttpServerService {
       .pipe(catchError(this.handleError));
   }  
 
+  getNewImageInCate(cateId : number) {
+    const url = `${this.REST_API_SERVER}/api/images/new/`+ cateId;
+    return this.http
+      .get<any>(url, httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  getUSerInfo(userId : any) {
+    const url = `${this.REST_API_SERVER}/api/authentication/profile/`+ userId;
+    return this.http
+      .get<any>(url, httpOptions)
+      .pipe(catchError(this.handleError));
+    
+  }
   // http Post
 
   public addImage(userId : string, data : Image) {

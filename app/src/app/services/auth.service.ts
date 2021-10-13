@@ -21,13 +21,14 @@ export class AuthService {
 
   token : any;
   decoded : any;
- 
+  user : any;
+
   constructor(
     private http: HttpClient,
     public router: Router
     ) { }
 
-    login(user : any): Observable<any> {
+    login(user : any): Observable<any> { 
       return this.http.post(AUTH_API + 'login', user, httpOptions)
     }
   

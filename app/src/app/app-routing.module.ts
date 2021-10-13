@@ -14,6 +14,7 @@ import { DetailUserComponent } from './detail-user/detail-user.component';
 import { AdminComponent } from './admin/admin.component';
 import { ApprovalGuard } from './share/approval.guard';
 import { SearchComponent } from './search/search.component';
+import { UserinfoComponent } from './userinfo/userinfo.component';
 
 // import { ContainerComponent } from './container/container.component';
 
@@ -25,6 +26,7 @@ const routes: Routes = [
     { path: '', component: AllImagesComponent, canActivate: [AuthGuard]},
     { path: 'search', component:SearchComponent, canActivate: [AuthGuard]},
     { path: 'admin', component: AdminComponent, canActivate: [ApprovalGuard,AuthGuard], data: {expectedRole: 'Admin'}},
+    {path : 'userinfo', component : UserinfoComponent, canActivate: [AuthGuard]},
     { path: ':page', component: AllImagesComponent, canActivate: [AuthGuard]},
     { path: 'image-in-cate/:cateId', component: ImageInCateComponent, canActivate: [AuthGuard]},
     { path: 'image-detail/:imageId', component: DetailComponent, canActivate: [AuthGuard]},

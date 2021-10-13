@@ -11,11 +11,12 @@ import { CommonService } from '../services/common.service';
 })
 export class RegisterComponent implements OnInit {
 
-  role ="Admin";
+  role ="User";
   registerForm = new FormGroup({
     firstName: new FormControl(''),
     lastName: new FormControl(''),
     email : new FormControl(''),
+    phoneNumber : new FormControl(),
     userName: new FormControl(''),
     passWord: new FormControl(''),
     roles : new FormControl([this.role])
